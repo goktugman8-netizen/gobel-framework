@@ -1,0 +1,61 @@
+{
+    "name": "gobel/framework",
+    "description": "An advanced, Laravel-like PHP MVC framework",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "fakerphp/faker": "^1.24",
+        "firebase/php-jwt": "^7.0",
+        "illuminate/auth": "^12.53",
+        "illuminate/cache": "^12.53",
+        "illuminate/container": "^12.53",
+        "illuminate/database": "^12.53",
+        "illuminate/events": "^12.53",
+        "illuminate/filesystem": "^12.53",
+        "illuminate/hashing": "^12.53",
+        "illuminate/mail": "^12.53",
+        "illuminate/notifications": "^12.53",
+        "illuminate/queue": "^12.53",
+        "illuminate/support": "^12.53",
+        "illuminate/translation": "^12.53",
+        "illuminate/validation": "^12.53",
+        "intervention/image": "^3.11",
+        "monolog/monolog": "^3.10",
+        "nesbot/carbon": "^3.11",
+        "symfony/mailer": "^7.4",
+        "symfony/var-dumper": "^7.4",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gobel\\": "src/",
+            "App\\": "app/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "bin": [
+        "gobel"
+    ],
+    "scripts": {
+        "serve": "php -S localhost:8000 -t public",
+        "migrate": "php gobel migrate",
+        "gobel": "php gobel",
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php gobel key:generate",
+            "@php -r \"touch('database/database.sqlite');\""
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

@@ -1,0 +1,1 @@
+<?php // Empty api routes ?>

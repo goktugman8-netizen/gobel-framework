@@ -1,0 +1,9 @@
+* text=auto eol=lf
+gobel text eol=lf
+*.php text eol=lf
+*.gobel.php text eol=lf
+*.css text
+*.js text
+*.md text
+.htaccess text
+.env.example text

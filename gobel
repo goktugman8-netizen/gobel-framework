@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Gobel Console Application
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__ . '/vendor/autoload.php';
+
+$app = require_once __DIR__ . '/bootstrap/app.php';
+
+$kernel = new \Gobel\Console\Application($app);
+
+$status = $kernel->run($_SERVER['argv']);
+
+exit($status);
