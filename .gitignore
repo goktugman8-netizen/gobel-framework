@@ -1,0 +1,14 @@
+/vendor
+/.env
+/storage/framework/views/*.php
+/storage/logs/*.log
+/database/database.sqlite
+.idea
+.vscode
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+auth.json
+composer.lock
