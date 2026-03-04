@@ -65,6 +65,7 @@ class Application
         $this->add(new \Gobel\Console\MakePolicyCommand);
         $this->add(new \Gobel\Console\MakeResourceCommand);
         $this->add(new \Gobel\Console\KeyGenerateCommand);
+        $this->add(new \Gobel\Console\ScheduleRunCommand);
     }
 
     /**

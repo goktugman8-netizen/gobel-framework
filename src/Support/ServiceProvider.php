@@ -9,14 +9,15 @@ abstract class ServiceProvider
     /**
      * The application instance.
      *
-     * @var Application
+     * @var \Gobel\Foundation\Application
      */
     protected $app;
 
     /**
      * Create a new service provider instance.
      *
-     * @param Application $app
+     * @param \Gobel\Foundation\Application $app
+     * @return void
      */
     public function __construct(Application $app)
     {

@@ -21,6 +21,27 @@ class Application extends IlluminateContainer
     protected $basePath;
 
     /**
+     * All of the registered service providers.
+     *
+     * @var \Gobel\Support\ServiceProvider[]
+     */
+    protected $serviceProviders = [];
+
+    /**
+     * The names of the loaded service providers.
+     *
+     * @var array
+     */
+    protected $loadedProviders = [];
+
+    /**
+     * Indicates if the application has been "booted".
+     *
+     * @var bool
+     */
+    protected $booted = false;
+
+    /**
      * Create a new Gobel application instance.
      *
      * @param string|null $basePath
@@ -154,5 +175,51 @@ class Application extends IlluminateContainer
     public function version()
     {
         return static::VERSION;
+    }
+
+    /**
+     * Register a service provider with the application.
+     *
+     * @param \Gobel\Support\ServiceProvider|string $provider
+     * @return \Gobel\Support\ServiceProvider
+     */
+    public function register($provider)
+    {
+        if (is_string($provider)) {
+            $provider = new $provider($this);
+        }
+
+        if (isset($this->loadedProviders[get_class($provider)])) {
+            return $this->loadedProviders[get_class($provider)];
+        }
+
+        $provider->register();
+
+        $this->serviceProviders[] = $provider;
+        $this->loadedProviders[get_class($provider)] = $provider;
+
+        if ($this->booted) {
+            $provider->boot();
+        }
+
+        return $provider;
+    }
+
+    /**
+     * Boot the application's service providers.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if ($this->booted) {
+            return;
+        }
+
+        foreach ($this->serviceProviders as $provider) {
+            $provider->boot();
+        }
+
+        $this->booted = true;
     }
 }
