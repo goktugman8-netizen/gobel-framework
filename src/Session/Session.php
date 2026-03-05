@@ -60,7 +60,22 @@ class Session
      */
     public function flash(string $key, $value)
     {
-        $_SESSION['_flash']['next'][$key] = $value;
+        // Support dot notation for flashing
+        if (str_contains($key, '.')) {
+            $keys = explode('.', $key);
+            $current = &$_SESSION['_flash']['next'];
+            
+            foreach ($keys as $k) {
+                if (!isset($current[$k]) || !is_array($current[$k])) {
+                    $current[$k] = [];
+                }
+                $current = &$current[$k];
+            }
+            
+            $current = $value;
+        } else {
+            $_SESSION['_flash']['next'][$key] = $value;
+        }
     }
 
     /**

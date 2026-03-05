@@ -5,6 +5,7 @@
     "require": {
         "php": "^8.0",
         "fakerphp/faker": "^1.24",
+        "filp/whoops": "^2.18",
         "firebase/php-jwt": "^7.0",
         "illuminate/auth": "^12.53",
         "illuminate/cache": "^12.53",
@@ -13,8 +14,10 @@
         "illuminate/events": "^12.53",
         "illuminate/filesystem": "^12.53",
         "illuminate/hashing": "^12.53",
+        "illuminate/http": "^12.53",
         "illuminate/mail": "^12.53",
         "illuminate/notifications": "^12.53",
+        "illuminate/pipeline": "^12.53",
         "illuminate/queue": "^12.53",
         "illuminate/support": "^12.53",
         "illuminate/translation": "^12.53",

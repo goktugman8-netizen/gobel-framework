@@ -58,7 +58,7 @@ class MakeRequestCommand extends Command
 
 namespace App\Requests;
 
-use Gobel\Http\Request;
+use Illuminate\Http\Request;
 
 class {$name} extends Request
 {

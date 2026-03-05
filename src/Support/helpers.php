@@ -111,7 +111,7 @@ if (! function_exists('view')) {
      *
      * @param string|null $view
      * @param array $data
-     * @return \Gobel\Http\Response|string
+     * @return \Illuminate\Http\Response|string
      */
     function view($view = null, $data = [])
     {
@@ -123,7 +123,7 @@ if (! function_exists('view')) {
 
         $content = $factory->make($view, $data);
         
-        return new \Gobel\Http\Response($content);
+        return new \Illuminate\Http\Response($content);
     }
 }
 
@@ -246,24 +246,10 @@ if (! function_exists('config')) {
     function config($key = null, $default = null)
     {
         if (is_null($key)) {
-            return null;
+            return app('config');
         }
 
-        [$file, $path] = array_pad(explode('.', $key, 2), 2, null);
-        
-        $configPath = app()->configPath($file . '.php');
-        
-        if (!file_exists($configPath)) {
-            return $default;
-        }
-
-        $config = require $configPath;
-
-        if (!$path) {
-            return $config;
-        }
-
-        return $config[$path] ?? $default;
+        return app('config')->get($key, $default);
     }
 }
 
@@ -283,5 +269,56 @@ if (! function_exists('db')) {
         }
 
         return $db->table($table);
+    }
+}
+
+if (! function_exists('collect')) {
+    /**
+     * Create a collection from the given value.
+     *
+     * @param  mixed  $value
+     * @return \Illuminate\Support\Collection
+     */
+    function collect($value = null)
+    {
+        return new \Illuminate\Support\Collection($value);
+    }
+}
+
+if (! function_exists('back')) {
+    /**
+     * Create a new redirect response to the previous location.
+     *
+     * @param  int  $status
+     * @param  array  $headers
+     * @return \Gobel\Http\RedirectResponse
+     */
+    function back($status = 302, $headers = [])
+    {
+        $request = app('request');
+        $url = $request->header('referer') ?? '/';
+        
+        return new \Gobel\Http\RedirectResponse($url, $status, $headers);
+    }
+}
+
+if (! function_exists('old')) {
+    /**
+     * Retrieve an old input item from the session.
+     *
+     * @param  string|null  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    function old($key = null, $default = null)
+    {
+        $session = app(\Gobel\Session\Session::class);
+        $oldInput = $session->get('_old_input') ?? [];
+
+        if (is_null($key)) {
+            return $oldInput;
+        }
+
+        return $oldInput[$key] ?? $default;
     }
 }

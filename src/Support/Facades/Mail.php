@@ -1,20 +1,14 @@
-<?php
-
 namespace Gobel\Support\Facades;
 
-use Gobel\Foundation\Application;
-
-class Mail
+class Mail extends Facade
 {
     /**
-     * Handle dynamic static method calls into the Mail manager.
+     * Get the registered name of the component.
      *
-     * @param string $method
-     * @param array $parameters
-     * @return mixed
+     * @return string
      */
-    public static function __callStatic($method, $parameters)
+    protected static function getFacadeAccessor()
     {
-        return Application::getInstance()->make('mail.manager')->$method(...$parameters);
+        return 'mail.manager';
     }
 }

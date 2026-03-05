@@ -1,20 +1,14 @@
-<?php
-
 namespace Gobel\Support\Facades;
 
-use Gobel\Foundation\Application;
-
-class Lang
+class Lang extends Facade
 {
     /**
-     * Handle dynamic static method calls into the Translator.
+     * Get the registered name of the component.
      *
-     * @param string $method
-     * @param array $parameters
-     * @return mixed
+     * @return string
      */
-    public static function __callStatic($method, $parameters)
+    protected static function getFacadeAccessor()
     {
-        return Application::getInstance()->make('translator')->$method(...$parameters);
+        return 'translator';
     }
 }

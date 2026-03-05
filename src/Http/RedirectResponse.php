@@ -1,6 +1,6 @@
-<?php
-
 namespace Gobel\Http;
+
+use Illuminate\Http\Response;
 
 class RedirectResponse extends Response
 {
@@ -35,6 +35,16 @@ class RedirectResponse extends Response
         } else {
             $session->flash($key, $value);
         }
+
+        return $this;
+    }
+
+    public function withInput()
+    {
+        $session = app(\Gobel\Session\Session::class);
+        $request = app('request');
+
+        $session->flash('_old_input', $request->all());
 
         return $this;
     }

@@ -155,8 +155,8 @@ HTML;
 
 namespace App\Controllers\Auth;
 
-use Gobel\Http\Request;
-use Gobel\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\User;
 use Gobel\Support\Facades\Hash;
 use Gobel\Support\Facades\Auth;

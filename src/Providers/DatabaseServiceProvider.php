@@ -32,6 +32,10 @@ class DatabaseServiceProvider extends ServiceProvider
 
             return $capsule;
         });
+
+        $this->app->singleton('db.schema', function ($app) {
+            return $app->make('db')->getConnection()->getSchemaBuilder();
+        });
     }
 
     public function boot()

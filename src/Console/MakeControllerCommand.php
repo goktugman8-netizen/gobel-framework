@@ -75,8 +75,8 @@ class MakeControllerCommand extends Command
 
 namespace {$namespace};
 
-use Gobel\Http\Request;
-use Gobel\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class {$class}
 {

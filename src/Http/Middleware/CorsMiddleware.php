@@ -2,8 +2,8 @@
 
 namespace Gobel\Http\Middleware;
 
-use Gobel\Http\Request;
-use Gobel\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Closure;
 
 class CorsMiddleware
@@ -23,9 +23,9 @@ class CorsMiddleware
             $response = new Response($response);
         }
 
-        $response->setHeader('Access-Control-Allow-Origin', '*');
-        $response->setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        $response->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+        $response->header('Access-Control-Allow-Origin', '*');
+        $response->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
 
         // Handle preflight requests
         if ($request->method() === 'OPTIONS') {

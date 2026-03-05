@@ -3,6 +3,7 @@
 namespace Gobel\Foundation;
 
 use Illuminate\Container\Container as IlluminateContainer;
+use Illuminate\Support\Facades\Facade;
 
 class Application extends IlluminateContainer
 {
@@ -160,6 +161,7 @@ class Application extends IlluminateContainer
     protected function registerBaseBindings()
     {
         static::setInstance($this);
+        Facade::setFacadeApplication($this);
 
         $this->instance('app', $this);
         $this->instance(IlluminateContainer::class, $this);

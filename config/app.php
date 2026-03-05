@@ -38,6 +38,8 @@ return [
         /*
          * Framework Service Providers...
          */
+        Gobel\Providers\HttpServiceProvider::class,
+        Gobel\Providers\ConfigServiceProvider::class,
         Gobel\Providers\DatabaseServiceProvider::class,
         Gobel\Providers\ViewServiceProvider::class,
         Gobel\Providers\RouteServiceProvider::class,
@@ -50,6 +52,7 @@ return [
         Gobel\Providers\NotificationServiceProvider::class,
         Gobel\Providers\ScheduleServiceProvider::class,
         Gobel\Providers\RedisServiceProvider::class,
+        Gobel\Providers\FilesystemServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -28,7 +28,7 @@
         </div>
         <div class="flex items-center space-x-6 text-sm">
             <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
-            <a href="https://github.com" class="hover:text-blue-400 transition-colors">GitHub</a>
+            <a href="https://github.com/goktugman8-netizen/gobel-framework" class="hover:text-blue-400 transition-colors">GitHub</a>
             <div class="px-4 py-1.5 bg-blue-600/10 border border-blue-500/20 rounded-full text-blue-400 font-medium">Enterprise Edition</div>
         </div>
     </header>

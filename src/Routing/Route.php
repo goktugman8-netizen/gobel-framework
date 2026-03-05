@@ -63,10 +63,10 @@ class Route
     /**
      * Determine if the route matches a given request.
      *
-     * @param \Gobel\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
-    public function matches(\Gobel\Http\Request $request)
+    public function matches(\Illuminate\Http\Request $request)
     {
         if (!in_array($request->method(), $this->methods)) {
             return false;

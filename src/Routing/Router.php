@@ -4,8 +4,8 @@ namespace Gobel\Routing;
 
 use Closure;
 use Illuminate\Container\Container;
-use Gobel\Http\Request;
-use Gobel\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Router
 {
@@ -197,10 +197,18 @@ class Router
      */
     public function prepareResponse($request, $response)
     {
-        if ($response instanceof Response) {
+        if ($response instanceof \Illuminate\Http\JsonResponse) {
             return $response;
         }
 
-        return new Response($response);
+        if ($response instanceof \Illuminate\Http\Response) {
+            return $response;
+        }
+
+        if (is_array($response) || $response instanceof \Illuminate\Contracts\Support\Jsonable) {
+            return new \Illuminate\Http\JsonResponse($response);
+        }
+
+        return new \Illuminate\Http\Response($response);
     }
 }
